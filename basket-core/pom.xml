@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.basket</groupId>
+	<artifactId>basket-core</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+
+	<name>basket-parent</name>
+	<description>Demo project for Spring Boot</description>
+
+
+	<properties>
+		<!-- Used by MyBatis Generator to Generate Codes -->
+		<classPathEntry.mysql.location>${basedir}/src/test/resources/mysql-connector-java-${mysql.connector.java.version}.jar</classPathEntry.mysql.location>
+		<javaModelGenerator.targetProject>${basedir}/src/main/java</javaModelGenerator.targetProject>
+		<sqlMapGenerator.targetProject>${basedir}/src/main/resources</sqlMapGenerator.targetProject>
+		<javaClientGenerator.targetProject>${basedir}/src/main/java</javaClientGenerator.targetProject>
+		<mybatis.generator.configurationFile>${basedir}/src/test/resources/generatorConfig.xml</mybatis.generator.configurationFile>
+		<mybatis.generator.overwrite>true</mybatis.generator.overwrite>
+	</properties>
+	<parent>
+		<groupId>com.basket</groupId>
+		<artifactId>basket-parent</artifactId>
+		<version>0.0.1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.spy</groupId>
+			<artifactId>spymemcached</artifactId>
+			<version>${spy.spymemcached.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+					<include>**/*.conf</include>
+					<include>**/*.ftl</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/Abstract*.java</exclude>
+						<exclude>**/*Main.java</exclude>
+					</excludes>
+					<junitArtifactName>junit:junit</junitArtifactName>
+					<argLine>-Xmx512m</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+</project>
