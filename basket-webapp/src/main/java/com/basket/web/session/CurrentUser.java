@@ -37,7 +37,6 @@ public class CurrentUser implements java.io.Serializable {
      * @param name 用户名称或昵称
      * @param userRole 用户角色
      * @param deptId
-     * @param login 是否已登录
      */
     public CurrentUser(String userId, String email, String name, String userRole, int deptId) {
         if (StringUtils.isBlank(userId)) {
